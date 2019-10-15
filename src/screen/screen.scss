@@ -1,0 +1,33 @@
+.screen-container {
+    height: 300px;
+    width: 594px;
+    border: 3px double #E8E8E8;
+}
+
+.screen-value {
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 1px;
+    padding: 10px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    background-color: #F5F5F5;
+    color: black;
+}
+
+.action-buttons-container {
+    display: flex; 
+    justify-content: space-around;
+
+    button {
+        color: black;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 600;
+        height: 70px;
+        padding: 1rem;
+    }
+}

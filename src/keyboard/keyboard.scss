@@ -1,0 +1,83 @@
+.keyboard-container {
+    text-align: center;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+
+     button {
+      color: black;
+      font-size: 1.5rem;
+      width: 33.3%;
+      cursor: pointer;
+      font-weight: 600;
+      height: 60px;
+      padding: 0rem;
+     }
+}
+  
+.numeric button {
+    background-color:	#B8B8B8;
+    border: 5px double #E8E8E8;
+}
+
+.action button {
+  background-color:	#B8B8B8;
+  border: 5px double #E8E8E8;
+}
+
+.action {
+    .cancel {
+      color: red;
+    }
+
+    .clear {
+      color: yellow;
+    }
+
+    .enter {
+      color: green;
+    }
+}
+
+.screen-container {
+  height: 300px;
+  width: 594px;
+  border: 3px double #E8E8E8;
+}
+
+.screen-value {
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 1px;
+  padding: 10px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  background-color: #F5F5F5;
+  color: black;
+}
+
+.action-buttons-container {
+  display: flex; 
+  justify-content: space-around;
+
+  button {
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      height: 70px;
+      padding: 1rem;
+  }
+}
+
+  
