@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Screen from '../screen/screen';
-import DepositMoney from '../screen/deposit-money/deposit-money';
 import "./keyboard.scss";
 
 class Keyboard extends Component {
@@ -12,11 +10,16 @@ class Keyboard extends Component {
             inputValue: '',
             shouldShowAccountBalance: false,
             shouldShowInput: false,
-            accountBalance: ''
+            accountBalance: '',
+            depostiMoney: '',
+            withdrawMoney: ''
         }
 
         this.checkAccountBalance = this.checkAccountBalance.bind(this);
         this.showInput = this.showInput.bind(this);
+        this.depostiMoney = this.depostiMoney.bind(this);
+        this.withdrawMoney = this.withdrawMoney.bind(this);
+        this.enter = this.enter.bind(this);
     }
 
     addValueToInput = e => {
@@ -28,7 +31,7 @@ class Keyboard extends Component {
     }
 
     checkAccountBalance() {
-        this.setState({ shouldShowAccountBalance: true });
+        this.setState({ shouldShowAccountBalance: true, shouldShowInput: false });
     }
 
     showInput() {
@@ -41,31 +44,65 @@ class Keyboard extends Component {
         fetch(url)
             .then(res => res.json())
             .then((data) => {
-                console.warn(data.balance);
                 this.setState({ accountBalance: data.balance });
-            })
+            });
+    }
+
+    saveNewAccountBalance(value) {
+        let url = 'http://localhost:3003/account';
+
+        fetch(url, { method: 'post', body: JSON.stringify({ "balance": value }) })
+            .then(res => res.json())
+            .then(() => {
+                this.setState({ accountBalance: value})
+            });
     }
 
     componentDidMount() {
         this.getAccountBalance();
     }
 
-    render() {
-        let shouldShowInput;
-        if (this.state.inputValue) {
-            shouldShowInput = <DepositMoney value={this.state.inputValue} />
-        }
+    depostiMoney() {
+        this.clearInput();
+        this.setState({ shouldShowInput: true, depostiMoney: true, withdrawMoney: false });
+    }
 
-        const showInputValue = <div className="screen-value">{this.props.value}</div>
+    withdrawMoney() {
+        this.clearInput();
+        this.setState({ shouldShowInput: true, withdrawMoney: true, depostiMoney: false });
+    }
+
+    checkWithdrowMoney() {        
+        if (this.state.inputValue > this.state.accountBalance) {
+            alert('Nie masz wystarczających środków na koncie');
+        } else {
+            var balacneAfterWithdraw = Number(this.state.accountBalance) - Number(this.state.inputValue);
+            this.setState({ accountBalance: balacneAfterWithdraw, inputValue: " "  });
+            this.saveNewAccountBalance(balacneAfterWithdraw);
+        }
+    }
+
+    enter() {
+        if (this.state.depostiMoney) {
+            let balanceAfterDeposit = Number(this.state.accountBalance) + Number(this.state.inputValue);
+            this.setState({ accountBalance: balanceAfterDeposit, inputValue: " "  });
+            this.saveNewAccountBalance(balanceAfterDeposit);
+        } else if (this.state.withdrawMoney) {
+            this.checkWithdrowMoney();
+        }
+    }
+
+    render() {
+        const showInputValue = <div className="screen-value">{this.state.inputValue}</div>
 
         return (
             <div className="keyboard-container ">
-                {/* <Screen value={this.state.inputValue} /> */}
+
                 <div className="screen-container">
                     <div className="action-buttons-container">
                         <button onClick={this.checkAccountBalance}>Check account balance</button>
-                        <button onClick={this.showInput}>Deposit money</button>
-                        <button onClick={this.showInput}>Withdraw money</button>
+                        <button onClick={this.depostiMoney}>Deposit money</button>
+                        <button onClick={this.withdrawMoney}>Withdraw money</button>
                     </div>
                     {this.state.shouldShowAccountBalance ?
                         <div>
@@ -73,7 +110,7 @@ class Keyboard extends Component {
                         </div> : null}
                     {this.state.shouldShowInput ? showInputValue : null}
                 </div>
-                {/* {shouldShowInput} */}
+
                 <div className="keyboard numeric" onClick={e => this.addValueToInput(e, "value")}>
                     <button value="1">1</button>
                     <button value="2">2</button>
@@ -94,7 +131,7 @@ class Keyboard extends Component {
                 <div className="keyboard action">
                     <button className="cancel" onClick={this.clearInput}>cancel</button>
                     <button className="clear" onClick={this.clearInput}>clear</button>
-                    <button className="enter">enter</button>
+                    <button className="enter" onClick={this.enter}>enter</button>
                 </div>
             </div>
         )
