@@ -3,54 +3,6 @@
     {
       "id": 1,
       "balance": 3000
-    },
-    {
-      "balance": 3058,
-      "id": 2
-    },
-    {
-      "balance": 5613,
-      "id": 3
-    },
-    {
-      "balance": 6168,
-      "id": 4
-    },
-    {
-      "balance": 946,
-      "id": 5
-    },
-    {
-      "balance": 1501,
-      "id": 6
-    },
-    {
-      "balance": 1243,
-      "id": 7
-    },
-    {
-      "balance": 1354,
-      "id": 8
-    },
-    {
-      "balance": 1576,
-      "id": 9
-    },
-    {
-      "balance": 1798,
-      "id": 10
-    },
-    {
-      "balance": 1465,
-      "id": 11
-    },
-    {
-      "balance": 1476,
-      "id": 12
-    },
-    {
-      "balance": 76,
-      "id": 13
     }
   ]
 }
