@@ -3,6 +3,8 @@ import "./atm.scss";
 
 class Atm extends Component {
 
+    url = 'http://localhost:3003/account';
+
     constructor(props) {
         super(props)
 
@@ -39,9 +41,7 @@ class Atm extends Component {
     }
 
     getAccountBalance() {
-        let url = 'http://localhost:3003/account';
-
-        fetch(url)
+        fetch(this.url)
             .then(res => res.json())
             .then((data) => {
                 let lastBalance = data[data.length - 1];
@@ -50,9 +50,7 @@ class Atm extends Component {
     }
 
     saveNewAccountBalance(value) {
-        let url = 'http://localhost:3003/account';
-
-        fetch(url, {
+        fetch(this.url, {
             method: 'post',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ "balance": value })
