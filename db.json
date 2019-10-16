@@ -1,5 +1,16 @@
 {
-    "account":{
-            "balance": "3000"
-        }
+  "account": [
+    {
+      "id": 1,
+      "balance": 3000
+    },
+    {
+      "balance": 3058,
+      "id": 2
+    },
+    {
+      "balance": 5613,
+      "id": 3
+    }
+  ]
 }

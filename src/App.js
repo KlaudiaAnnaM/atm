@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Keyboard from './keyboard/keyboard'
+import Atm from './component/atm'
 
 function App() {
   return (
     <div className="container">
-      <Keyboard/>
+      <Atm/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import "./keyboard.scss";
+import "./atm.scss";
 
-class Keyboard extends Component {
+class Atm extends Component {
 
     constructor(props) {
         super(props)
@@ -44,17 +44,22 @@ class Keyboard extends Component {
         fetch(url)
             .then(res => res.json())
             .then((data) => {
-                this.setState({ accountBalance: data.balance });
+                let lastBalance = data[data.length - 1];
+                this.setState({ accountBalance: lastBalance.balance });
             });
     }
 
     saveNewAccountBalance(value) {
         let url = 'http://localhost:3003/account';
 
-        fetch(url, { method: 'post', body: JSON.stringify({ "balance": value }) })
+        fetch(url, {
+            method: 'post',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ "balance": value })
+        })
             .then(res => res.json())
             .then(() => {
-                this.setState({ accountBalance: value})
+                this.setState({ accountBalance: value })
             });
     }
 
@@ -72,12 +77,12 @@ class Keyboard extends Component {
         this.setState({ shouldShowInput: true, withdrawMoney: true, depostiMoney: false });
     }
 
-    checkWithdrowMoney() {        
+    checkWithdrowMoney() {
         if (this.state.inputValue > this.state.accountBalance) {
             alert('Nie masz wystarczających środków na koncie');
         } else {
             var balacneAfterWithdraw = Number(this.state.accountBalance) - Number(this.state.inputValue);
-            this.setState({ accountBalance: balacneAfterWithdraw, inputValue: " "  });
+            this.setState({ accountBalance: balacneAfterWithdraw, inputValue: " " });
             this.saveNewAccountBalance(balacneAfterWithdraw);
         }
     }
@@ -85,7 +90,7 @@ class Keyboard extends Component {
     enter() {
         if (this.state.depostiMoney) {
             let balanceAfterDeposit = Number(this.state.accountBalance) + Number(this.state.inputValue);
-            this.setState({ accountBalance: balanceAfterDeposit, inputValue: " "  });
+            this.setState({ accountBalance: balanceAfterDeposit, inputValue: " " });
             this.saveNewAccountBalance(balanceAfterDeposit);
         } else if (this.state.withdrawMoney) {
             this.checkWithdrowMoney();
@@ -139,4 +144,4 @@ class Keyboard extends Component {
 
 }
 
-export default Keyboard;
+export default Atm;
