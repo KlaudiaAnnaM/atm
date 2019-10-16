@@ -67,17 +67,17 @@ class Atm extends Component {
 
     depostiMoney() {
         this.clearInput();
-        this.setState({ shouldShowInput: true, depostiMoney: true, withdrawMoney: false });
+        this.setState({ shouldShowInput: true, depostiMoney: true, withdrawMoney: false, shouldShowAccountBalance: false });
     }
 
     withdrawMoney() {
         this.clearInput();
-        this.setState({ shouldShowInput: true, withdrawMoney: true, depostiMoney: false });
+        this.setState({ shouldShowInput: true, withdrawMoney: true, depostiMoney: false, shouldShowAccountBalance: false });
     }
 
     checkWithdrowMoney() {
         if (this.state.inputValue > this.state.accountBalance) {
-            alert('Nie masz wystarczających środków na koncie');
+            alert('You do not have enough account balance');
         } else {
             var balacneAfterWithdraw = Number(this.state.accountBalance) - Number(this.state.inputValue);
             this.setState({ accountBalance: balacneAfterWithdraw, inputValue: " " });
@@ -107,11 +107,17 @@ class Atm extends Component {
                         <button onClick={this.depostiMoney}>Deposit money</button>
                         <button onClick={this.withdrawMoney}>Withdraw money</button>
                     </div>
-                    {this.state.shouldShowAccountBalance ?
-                        <div>
-                            <p>Account balace: {this.state.accountBalance}</p>
-                        </div> : null}
-                    {this.state.shouldShowInput ? showInputValue : null}
+                    <div className="account-balance-show">
+                        {this.state.shouldShowAccountBalance ?
+                            <div>
+                                <p>Account balace:
+                                    <br />
+                                    {this.state.accountBalance}</p>
+                            </div> : null}
+                    </div>
+                    <div className="input-show">
+                        {this.state.shouldShowInput ? showInputValue : null}
+                    </div>
                 </div>
 
                 <div className="keyboard numeric" onClick={e => this.addValueToInput(e, "value")}>

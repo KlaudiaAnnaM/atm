@@ -23,26 +23,60 @@
 }
   
 .numeric button {
-    background-color:	#B8B8B8;
-    border: 5px double #E8E8E8;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background:linear-gradient(to bottom, #b0b0b0 5%, #616061 100%);
+    border: 2px double #d6d6d6;
+    cursor: pointer;
+    color: #403f40;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 6px 24px;
+    color: white;
+
+    &:hover {
+      background:linear-gradient(to bottom, #616061 5%, #b0b0b0 100%);
+      background-color:#616061;
+    }
 }
 
 .action button {
-  background-color:	#B8B8B8;
-  border: 5px double #E8E8E8;
+	background-color:#d1cfd1;
+  border: 2px double #d6d6d6;
+  color: white;
 }
 
 .action {
     .cancel {
-      color: red;
+      box-shadow:inset 0px 1px 0px 0px #f5978e;
+      background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+      background-color:#f24537;
+
+        &:hover {
+          background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+          background-color:#c62d1f;
+        }
     }
 
     .clear {
-      color: yellow;
+      box-shadow:inset 0px 1px 0px 0px #fff6af;
+      background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+      background-color:#ffec64;
+
+        &:hover {
+          background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+          background-color:#ffab23;
+        }
     }
 
     .enter {
-      color: green;
+      box-shadow:inset 0px 1px 0px 0px #a4e271;
+      background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+      background-color:#89c403;
+
+        &:hover {
+          background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+          background-color:#77a809;
+        }
     }
 }
 
@@ -50,34 +84,50 @@
   height: 300px;
   width: 594px;
   border: 3px double #E8E8E8;
+  background-color: #e6e6e6;
 }
 
 .screen-value {
   margin: auto;
-  margin-top: 30px;
-  border-radius: 1px;
-  padding: 10px;
-  width: 200px;
-  height: 30px;
+  border-radius: 6px;
+  padding: 17px;
+  width: 235px;
+  height: 40px;
   text-align: center;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 600;
   background-color: #F5F5F5;
-  color: black;
+  color: #424242;
 }
 
 .action-buttons-container {
   display: flex; 
   justify-content: space-around;
+  margin-top: 10px;
 
   button {
-      color: black;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      height: 70px;
-      padding: 1rem;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:linear-gradient(to bottom, #ffffff 5%, #c2c2c2 100%);
+    border-radius: 3px;
+    border: 1px solid #b5b5b5;
+    cursor: pointer;
+    color:#424242;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+
+      &:hover {
+        background:linear-gradient(to bottom, #c2c2c2 5%, #ffffff 100%);
+        background-color:#c2c2c2;
+      }
   }
+}
+
+.account-balance-show {
+  margin: 100px;
+  font-size: 20px;
+  color: #424242;
+  font-weight: bold;
 }
 
   
