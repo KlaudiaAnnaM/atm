@@ -57,7 +57,8 @@ class Atm extends Component {
         })
             .then(res => res.json())
             .then(() => {
-                this.setState({ accountBalance: value })
+                this.setState({ accountBalance: value, shouldShowInput: false, shouldShowAccountBalance: true  });
+                alert('Transaction was successful')
             });
     }
 
