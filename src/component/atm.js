@@ -32,6 +32,10 @@ class Atm extends Component {
         this.setState({ inputValue: " " });
     }
 
+    cancel = () => {
+        this.setState({ shouldShowAccountBalance: false, shouldShowInput: false });
+    }
+
     checkAccountBalance() {
         this.setState({ shouldShowAccountBalance: true, shouldShowInput: false });
     }
@@ -139,7 +143,7 @@ class Atm extends Component {
                     <button></button>
                 </div>
                 <div className="keyboard action">
-                    <button className="cancel" onClick={this.clearInput}>cancel</button>
+                    <button className="cancel" onClick={this.cancel}>cancel</button>
                     <button className="clear" onClick={this.clearInput}>clear</button>
                     <button className="enter" onClick={this.enter}>enter</button>
                 </div>
